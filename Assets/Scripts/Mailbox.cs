@@ -127,7 +127,13 @@ public class Mailbox : MonoBehaviour
             });
 
             // parse tool args into a dictionary
+            Debug.Log("toolArgs: " + toolArgs);
             var argsDict = MiniJSON.Json.Deserialize(toolArgs) as Dictionary<string, object>;
+            if (argsDict == null)
+            {
+                Debug.LogError("Failed to parse tool arguments.");
+                continue;
+            }
             orchestrator.PerformTask(toolName, argsDict);
         }
 

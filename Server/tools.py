@@ -69,7 +69,7 @@ def close_door() -> str:
     return "world>> The door is now closed."
 
 @tool
-def move_self(dx: int, dy: int) -> str:
+def move_self(dx: float, dy: float) -> str:
     """Moves you by the specified dx and dy."""
     agent_position = you.get_position()
     new_position = (agent_position[0] + dx, agent_position[1] + dy)
