@@ -18,16 +18,16 @@ public static class UnityWebRequestExtensions
     }
 }
 
-[System.Serializable]
-public class MessageData
-{
-    public string content;
+// [System.Serializable]
+// public class MessageData
+// {
+//     public string content;
 
-    public MessageData(string content)
-    {
-        this.content = content;
-    }
-}
+//     public MessageData(string content)
+//     {
+//         this.content = content;
+//     }
+// }
 
 [System.Serializable]
 public class Message

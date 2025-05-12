@@ -14,14 +14,14 @@ def turn_lights_on() -> str:
 
     # Check if the agent is at the light's position
     if agent_position != light.position:
-        return f"Error: You are at {agent_position}, lights are at {light.position}. Please move closer."
+        return f"world>> Error: You are at {agent_position}, lights are at {light.position}. Please move closer."
     
     # Check if the light is already on
     if light.is_on:
-        return "Error: Lights are already on."
+        return "world>> Error: Lights are already on."
     
     light.turn_on()
-    return "Lights are now on."
+    return "world>> Lights are now on."
 
 @tool
 def turn_lights_off() -> str:
@@ -31,14 +31,14 @@ def turn_lights_off() -> str:
 
     # Check if the agent is at the light's position
     if agent_position != light.position:
-        return f"Error: You are at {agent_position}, lights are at {light.position}. Please move closer."
+        return f"world>> Error: You are at {agent_position}, lights are at {light.position}. Please move closer."
     
     # Check if the light is already off
     if not light.is_on:
-        return "Error: Lights are already off."
+        return "world>> Error: Lights are already off."
     
     light.turn_off()
-    return "Lights are now off."
+    return "world>> Lights are now off."
 
 @tool
 def open_door() -> str:
@@ -48,11 +48,11 @@ def open_door() -> str:
 
     # Check if the agent is at the door's position
     if agent_position != door.position:
-        return f"Error: You are at {agent_position}, door is at {door.position}. Please move closer."
+        return f"world>> Error: You are at {agent_position}, door is at {door.position}. Please move closer."
 
     # Open the door
     door.open()
-    return "The door is now open."
+    return "world>> The door is now open."
 
 @tool
 def close_door() -> str:
@@ -62,11 +62,11 @@ def close_door() -> str:
 
     # Check if the agent is at the door's position
     if agent_position != door.position:
-        return f"Error: You are at {agent_position}, door is at {door.position}. Please move closer."
+        return f"world>> Error: You are at {agent_position}, door is at {door.position}. Please move closer."
 
     # Close the door
     door.close()
-    return "The door is now closed."
+    return "world>> The door is now closed."
 
 @tool
 def move_self(dx: int, dy: int) -> str:
@@ -77,7 +77,7 @@ def move_self(dx: int, dy: int) -> str:
     # Update the agent's position
     you.set_position(new_position)
     
-    return f"Moved to {new_position}."
+    return f"world>> Moved to {new_position}."
 
 @tool
 def get_environment_state() -> str:
@@ -86,7 +86,7 @@ def get_environment_state() -> str:
     door_state = "open" if simulation.get_thing("door").is_open else "closed"
     light_state = "on" if simulation.get_thing("light").is_on else "off"
     
-    return f"You are at position {agent_position}. The door is {door_state}. The light is {light_state}."
+    return f"world>> You are at position {agent_position}. The door is {door_state}. The light is {light_state}."
 
 
 # Register the tools

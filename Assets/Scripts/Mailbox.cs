@@ -16,6 +16,9 @@ public class Mailbox : MonoBehaviour
 
     Mailman mailman;
 
+    [SerializeField]
+    TaskOrchestrator orchestrator;
+
     // Start is called before the first frame update
     void Start() {
         mailman = new Mailman();
@@ -68,8 +71,9 @@ public class Mailbox : MonoBehaviour
                     var call = toolCall["call"] as Dictionary<string, object>;
                     var message = toolCall["message"] as string;
 
-                    historyDisplay.text += "function>> " + call["tool"] + call["tool_input"] + "\n";
-                    historyDisplay.text += "function>> " + message + "\n";
+                    historyDisplay.text += "world>> " + call["tool"] + call["tool_input"] + "\n";
+                    historyDisplay.text += message + "\n";
+
                     ScrollToBottom();
                 }
 
@@ -121,6 +125,10 @@ public class Mailbox : MonoBehaviour
                 { "call", callDict },
                 { "message", message }
             });
+
+            // parse tool args into a dictionary
+            var argsDict = MiniJSON.Json.Deserialize(toolArgs) as Dictionary<string, object>;
+            orchestrator.PerformTask(toolName, argsDict);
         }
 
         return result;
